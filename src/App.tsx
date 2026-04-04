@@ -63,10 +63,10 @@ const Header = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
+    { name: 'Product', path: '/services' },
     { name: 'Features', path: '/#features' },
-    { name: 'Video', path: '/#video' },
     { name: 'Pricing', path: '/#pricing' },
-    { name: 'Demo', path: '/#demo' },
+    { name: 'Video Demo', path: '/#video' },
     { name: 'About Us', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -205,10 +205,11 @@ const Footer = () => (
         <div>
           <h4 className="text-gray-900 font-black mb-6 uppercase text-xs tracking-widest">Product</h4>
           <ul className="space-y-4">
+            <li><Link to="/services" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Services</Link></li>
             <li><Link to="/#features" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Features</Link></li>
             <li><Link to="/#pricing" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Pricing</Link></li>
             <li><Link to="/#video" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Video Demo</Link></li>
-            <li><Link to="/contact" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Download</Link></li>
+            <li><a href="https://getleadwave.in/LeadWave.exe" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Download</a></li>
           </ul>
         </div>
         <div>
@@ -216,8 +217,8 @@ const Footer = () => (
           <ul className="space-y-4">
             <li><Link to="/about" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">About Us</Link></li>
             <li><Link to="/contact" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Contact</Link></li>
-            <li><a href="#" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Privacy Policy</a></li>
-            <li><a href="#" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Terms of Service</a></li>
+            <li><Link to="/privacy" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Privacy Policy</Link></li>
+            <li><Link to="/terms" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Terms of Service</Link></li>
           </ul>
         </div>
       </div>
@@ -618,7 +619,7 @@ const Home = () => {
       </section>
 
       {/* Video Section */}
-      <section className="py-24 bg-white">
+      <section id="video" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-black text-gray-900 mb-4">Watch.Learn.Done <span className="text-[#f59e0b]">Simply.</span></h2>
           <p className="text-gray-500 max-w-2xl mx-auto mb-16">See Lead Wave in action! Watch our comprehensive tutorial and discover how easy it is to automate your WhatsApp business communication.</p>
@@ -933,6 +934,68 @@ const Contact = () => {
   );
 };
 
+const PrivacyPolicy = () => (
+  <main className="pt-32 pb-24">
+    <div className="max-w-4xl mx-auto px-6">
+      <h1 className="text-4xl font-black text-gray-900 mb-8">Privacy Policy</h1>
+      <div className="prose prose-slate max-w-none space-y-6 text-gray-600">
+        <p className="text-lg">Last updated: April 4, 2026</p>
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Information We Collect</h2>
+          <p>Leadwave is a desktop application. We do not store your WhatsApp messages or contacts on our servers. All data processed by the application remains on your local machine.</p>
+        </section>
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">2. How We Use Information</h2>
+          <p>The information collected (such as your license key and device ID) is used solely for the purpose of verifying your subscription and providing technical support.</p>
+        </section>
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Data Security</h2>
+          <p>We implement industry-standard security measures to protect your subscription information. However, since the software operates locally, you are responsible for the security of your own device.</p>
+        </section>
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Third-Party Services</h2>
+          <p>Our application interacts with WhatsApp's web interface. We are not affiliated with WhatsApp or Meta. Your use of WhatsApp is subject to their own terms and privacy policies.</p>
+        </section>
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Contact Us</h2>
+          <p>If you have any questions about this Privacy Policy, please contact us at Zulbulai@gmail.com.</p>
+        </section>
+      </div>
+    </div>
+  </main>
+);
+
+const TermsOfService = () => (
+  <main className="pt-32 pb-24">
+    <div className="max-w-4xl mx-auto px-6">
+      <h1 className="text-4xl font-black text-gray-900 mb-8">Terms of Service</h1>
+      <div className="prose prose-slate max-w-none space-y-6 text-gray-600">
+        <p className="text-lg">Last updated: April 4, 2026</p>
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Acceptance of Terms</h2>
+          <p>By downloading or using Leadwave, you agree to be bound by these Terms of Service. If you do not agree, do not use the software.</p>
+        </section>
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">2. License Grant</h2>
+          <p>We grant you a non-exclusive, non-transferable license to use Leadwave for your business purposes, subject to the terms of your subscription plan.</p>
+        </section>
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Prohibited Uses</h2>
+          <p>You agree not to use Leadwave for sending spam, unsolicited messages, or any content that violates WhatsApp's policies. We reserve the right to terminate your license for such violations.</p>
+        </section>
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Disclaimer of Warranties</h2>
+          <p>Leadwave is provided "as is" without any warranties. We do not guarantee that the software will be error-free or that it will meet all your requirements.</p>
+        </section>
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Limitation of Liability</h2>
+          <p>In no event shall Leadwave be liable for any indirect, incidental, or consequential damages arising out of the use of the software.</p>
+        </section>
+      </div>
+    </div>
+  </main>
+);
+
 // --- Main App ---
 
 export default function App() {
@@ -947,6 +1010,8 @@ export default function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
         </Routes>
         <Footer />
         
