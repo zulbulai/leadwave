@@ -100,7 +100,7 @@ const Header = () => {
             </Link>
           ))}
           <a 
-            href="https://wa.me/917261902348" 
+            href="https://getleadwave.in/LeadWave.exe" 
             className="bg-[#22c55e] text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-[#16a34a] transition-all shadow-md shadow-green-100"
           >
             Download App
@@ -162,7 +162,7 @@ const Header = () => {
 
               <div className="mt-auto pt-8 border-t border-gray-100">
                 <a 
-                  href="https://wa.me/917261902348" 
+                  href="https://getleadwave.in/LeadWave.exe" 
                   className="w-full bg-[#22c55e] text-white py-4 rounded-2xl font-black text-center text-lg flex items-center justify-center gap-2 shadow-xl shadow-green-100"
                 >
                   <MessageSquare className="w-5 h-5" /> Download App
@@ -192,10 +192,10 @@ const Footer = () => (
           </p>
           <div className="space-y-4">
             <div className="flex items-center gap-3 text-gray-500 text-sm">
-              <Mail className="w-4 h-4 text-[#22c55e]" /> technovedit@gmail.com
+              <Mail className="w-4 h-4 text-[#22c55e]" /> Zulbulai@gmail.com
             </div>
             <div className="flex items-center gap-3 text-gray-500 text-sm">
-              <MessageSquare className="w-4 h-4 text-[#22c55e]" /> WhatsApp: +91 72619 02348
+              <MessageSquare className="w-4 h-4 text-[#22c55e]" /> WhatsApp: +91 63876 17678
             </div>
             <div className="flex items-center gap-3 text-gray-500 text-sm">
               <MapPin className="w-4 h-4 text-[#22c55e]" /> Mumbai, Maharashtra, India
@@ -514,7 +514,7 @@ const Home = () => {
                 price: "299", 
                 period: "year", 
                 popular: false,
-                features: ["Everything in Quarterly", "Unlimited License Keys", "White Label Option", "Dedicated Account Manager", "Custom API Integration"]
+                features: ["Everything in Quarterly", "Multi-User Access", "Advanced Analytics", "Dedicated Account Manager", "Custom API Integration"]
               }
             ].map((plan, idx) => (
               <div key={idx} className={`relative p-8 rounded-[40px] border-2 transition-all flex flex-col ${
@@ -540,7 +540,7 @@ const Home = () => {
                 </ul>
                 
                 <a 
-                  href={`https://wa.me/917261902348?text=I want to buy the ${plan.title}`} 
+                  href={`https://wa.me/916387617678?text=I want to buy the ${plan.title}`} 
                   className={`w-full py-4 rounded-2xl font-black text-lg text-center transition-all flex items-center justify-center gap-2 ${
                     plan.popular 
                       ? 'bg-[#22c55e] text-white hover:bg-[#16a34a] shadow-xl shadow-green-100' 
@@ -567,7 +567,7 @@ const Home = () => {
             {[
               { step: "1", title: "Download & Install", desc: "Download the Lead Wave desktop application file and install it on your computer.", icon: Smartphone },
               { step: "2", title: "Get Your License Code", desc: "After installation, the app will display a unique license code. Copy this code.", icon: Zap },
-              { step: "3", title: "Share on WhatsApp", desc: "Send your license code to our WhatsApp number +91 72619 02348.", icon: MessageSquare },
+              { step: "3", title: "Share on WhatsApp", desc: "Send your license code to our WhatsApp number +91 63876 17678.", icon: MessageSquare },
               { step: "4", title: "Enter Activation Code", desc: "Enter the License Activation Code you received from our admin into the app.", icon: CheckCircle2 },
               { step: "5", title: "Start Using Lead Wave", desc: "Once activated, you can immediately start automating your WhatsApp business.", icon: Zap }
             ].map((item, i) => (
@@ -710,8 +710,8 @@ const Services = () => (
             icon: Users
           },
           { 
-            title: "Reseller & Licensing System", 
-            desc: "Start your own WhatsApp marketing business with our cloud-based licensing system. Generate and manage license keys for your own clients and keep 100% of the profits.",
+            title: "Advanced API Integration", 
+            desc: "Connect Leadwave with your existing CRM or business tools using our robust API. Streamline your entire sales pipeline and ensure data consistency across platforms.",
             icon: Shield
           }
         ].map((service, idx) => (
@@ -804,7 +804,7 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const message = `New Leadwave Inquiry:\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCompany: ${formData.company}\nPlan: ${formData.service}`;
-    window.open(`https://wa.me/917261902348?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/916387617678?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (
@@ -826,7 +826,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="text-xs font-bold text-gray-400 uppercase">Email</div>
-                    <div className="font-bold text-gray-900">technovedit@gmail.com</div>
+                    <div className="font-bold text-gray-900">Zulbulai@gmail.com</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -835,7 +835,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="text-xs font-bold text-gray-400 uppercase">Phone</div>
-                    <div className="font-bold text-gray-900">+91 72619 02348</div>
+                    <div className="font-bold text-gray-900">+91 63876 17678</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -849,7 +849,7 @@ const Contact = () => {
                 </div>
               </div>
               <a 
-                href="https://wa.me/917261902348" 
+                href="https://wa.me/916387617678" 
                 className="flex items-center justify-center gap-2 mt-10 bg-[#22c55e] text-white py-5 rounded-2xl font-black hover:bg-[#16a34a] transition-all shadow-lg shadow-green-100"
               >
                 <MessageSquare className="w-6 h-6" /> Click here to chat on WhatsApp
@@ -952,7 +952,7 @@ export default function App() {
         
         {/* WhatsApp Floating Button */}
         <a 
-          href="https://wa.me/917261902348?text=Hi, I need information about Leadwave" 
+          href="https://wa.me/916387617678?text=Hi, I need information about Leadwave" 
           className="fixed bottom-8 right-8 w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center shadow-2xl shadow-green-500/40 z-50 hover:scale-110 transition-transform animate-bounce"
           style={{ animationDuration: '3s' }}
         >
