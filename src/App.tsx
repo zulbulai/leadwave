@@ -600,12 +600,13 @@ const Home = () => {
                 1. Copy License Code
               </div>
               <h3 className="text-2xl font-black mb-6">After Installation</h3>
-              <div className="bg-white p-4 rounded-3xl shadow-xl border border-gray-100 aspect-video flex items-center justify-center">
-                {/* PLACEHOLDER: Replace with activation screen screenshot */}
-                <div className="text-center">
-                  <p className="text-gray-400 font-bold">Activation Screen Screenshot</p>
-                  <p className="text-xs text-gray-300 mt-2">Replace with actual image</p>
-                </div>
+              <div className="bg-white p-4 rounded-3xl shadow-xl border border-gray-100 aspect-video flex items-center justify-center overflow-hidden">
+                <img 
+                  src="https://getleadwave.in/assets/license-screen-COiWXns8.png" 
+                  alt="After Installation License Screen" 
+                  className="w-full h-full object-contain"
+                  referrerPolicy="no-referrer"
+                />
               </div>
             </div>
 
@@ -614,12 +615,13 @@ const Home = () => {
                 2. Enter Activation Code
               </div>
               <h3 className="text-2xl font-black mb-6">After WhatsApp Response</h3>
-              <div className="bg-white p-4 rounded-3xl shadow-xl border border-gray-100 aspect-video flex items-center justify-center">
-                {/* PLACEHOLDER: Replace with license key entry screen screenshot */}
-                <div className="text-center">
-                  <p className="text-gray-400 font-bold">License Key Entry Screenshot</p>
-                  <p className="text-xs text-gray-300 mt-2">Replace with actual image</p>
-                </div>
+              <div className="bg-white p-4 rounded-3xl shadow-xl border border-gray-100 aspect-video flex items-center justify-center overflow-hidden">
+                <img 
+                  src="https://getleadwave.in/assets/activation-screen-84qVMNXW.png" 
+                  alt="After WhatsApp Response Activation Screen" 
+                  className="w-full h-full object-contain"
+                  referrerPolicy="no-referrer"
+                />
               </div>
             </div>
           </div>
@@ -632,16 +634,15 @@ const Home = () => {
           <h2 className="text-4xl font-black text-gray-900 mb-4">Watch.Learn.Done <span className="text-[#f59e0b]">Simply.</span></h2>
           <p className="text-gray-500 max-w-2xl mx-auto mb-16">See Lead Wave in action! Watch our comprehensive tutorial and discover how easy it is to automate your WhatsApp business communication.</p>
           
-          <div className="max-w-5xl mx-auto bg-slate-900 rounded-[40px] overflow-hidden shadow-2xl relative group">
-            {/* PLACEHOLDER: Replace with actual video embed */}
-            <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-              <div className="w-24 h-24 bg-[#22c55e] rounded-full flex items-center justify-center shadow-2xl shadow-green-500/20 group-hover:scale-110 transition-transform cursor-pointer">
-                <Plus className="text-white w-10 h-10 rotate-45" /> {/* Play icon placeholder */}
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <p className="text-white/20 font-black text-4xl uppercase tracking-widest">Video Tutorial Placeholder</p>
-              </div>
-            </div>
+          <div className="max-w-5xl mx-auto bg-slate-900 rounded-[40px] overflow-hidden shadow-2xl relative group aspect-video">
+            <iframe 
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/-IawA-meopM" 
+              title="Leadwave Video Demo" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowFullScreen
+            ></iframe>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 mt-16 max-w-5xl mx-auto">
