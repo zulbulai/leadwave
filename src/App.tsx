@@ -215,8 +215,10 @@ const Footer = () => (
         <div>
           <h4 className="text-gray-900 font-black mb-6 uppercase text-xs tracking-widest">Company</h4>
           <ul className="space-y-4">
+            <li><Link to="/company" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Overview</Link></li>
             <li><Link to="/about" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">About Us</Link></li>
             <li><Link to="/contact" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Contact</Link></li>
+            <li><Link to="/#faq" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">FAQ</Link></li>
             <li><Link to="/privacy" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Privacy Policy</Link></li>
             <li><Link to="/terms" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Terms of Service</Link></li>
           </ul>
@@ -656,6 +658,48 @@ const Home = () => {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section id="faq" className="py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black text-gray-900 mb-4">Frequently Asked <span className="text-[#22c55e]">Questions</span></h2>
+            <p className="text-gray-500">Everything you need to know about Leadwave and how it works.</p>
+          </div>
+          <div className="space-y-6">
+            {[
+              {
+                q: "Is Leadwave safe for my WhatsApp account?",
+                a: "Yes, Leadwave is designed with safety in mind. We use smart delays and human-like interaction patterns to minimize the risk of account bans. However, we always recommend following WhatsApp's fair usage policies."
+              },
+              {
+                q: "Do I need a credit card for the free trial?",
+                a: "No, you can start your 2-day free trial without any credit card. Just download the app, get your license code, and contact us to activate it."
+              },
+              {
+                q: "Can I manage multiple WhatsApp accounts?",
+                a: "Absolutely! Leadwave supports multi-account management, allowing you to switch between different business profiles seamlessly."
+              },
+              {
+                q: "Is there a limit to how many messages I can send?",
+                a: "While Leadwave itself doesn't impose a strict limit, WhatsApp has its own internal limits to prevent spam. We provide tools like message rotation and delays to help you stay within safe limits."
+              },
+              {
+                q: "What kind of support do you offer?",
+                a: "We offer 24/7 WhatsApp support for all our users. Whether you have a technical issue or need help with setup, our team is always ready to assist."
+              }
+            ].map((faq, i) => (
+              <div key={i} className="p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-3">
+                  <span className="w-8 h-8 bg-[#22c55e] text-white rounded-full flex items-center justify-center text-sm shrink-0">?</span>
+                  {faq.q}
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed pl-11">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Ready to Get Started */}
       <section className="py-24 bg-gray-50">
         <div className="max-w-4xl mx-auto px-6 text-center">
@@ -934,6 +978,36 @@ const Contact = () => {
   );
 };
 
+const Company = () => (
+  <main className="pt-32 pb-24">
+    <div className="max-w-7xl mx-auto px-6">
+      <div className="text-center mb-20">
+        <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-6">Our Company</h1>
+        <p className="text-gray-600 max-w-2xl mx-auto">Leadwave is a leading provider of WhatsApp automation solutions, dedicated to helping businesses grow through innovative communication tools.</p>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-12 mb-20">
+        <div className="p-12 bg-gray-50 rounded-[40px] border border-gray-100">
+          <h2 className="text-3xl font-black mb-6">Our Mission</h2>
+          <p className="text-gray-600 leading-relaxed">To simplify business communication and empower entrepreneurs with cutting-edge automation technology that drives real results.</p>
+        </div>
+        <div className="p-12 bg-gray-50 rounded-[40px] border border-gray-100">
+          <h2 className="text-3xl font-black mb-6">Our Vision</h2>
+          <p className="text-gray-600 leading-relaxed">To become the global standard for WhatsApp-based business automation, fostering meaningful connections between brands and their customers.</p>
+        </div>
+      </div>
+
+      <div className="bg-[#22c55e] rounded-[40px] p-12 md:p-20 text-white text-center">
+        <h2 className="text-3xl md:text-5xl font-black mb-8">Ready to grow with us?</h2>
+        <p className="text-white/80 text-lg mb-12 max-w-2xl mx-auto">Join hundreds of businesses that trust Leadwave for their daily communication needs.</p>
+        <Link to="/contact" className="inline-flex items-center gap-2 bg-white text-[#22c55e] px-10 py-5 rounded-2xl font-black text-xl hover:bg-gray-50 transition-all">
+          Contact Us <ArrowRight className="w-6 h-6" />
+        </Link>
+      </div>
+    </div>
+  </main>
+);
+
 const PrivacyPolicy = () => (
   <main className="pt-32 pb-24">
     <div className="max-w-4xl mx-auto px-6">
@@ -1009,6 +1083,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<About />} />
+          <Route path="/company" element={<Company />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
