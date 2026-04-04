@@ -35,7 +35,8 @@ import {
   Send,
   Target,
   TrendingUp,
-  Search
+  Search,
+  Plus
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -62,86 +63,113 @@ const Header = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
+    { name: 'Features', path: '/#features' },
+    { name: 'Video', path: '/#video' },
+    { name: 'Pricing', path: '/#pricing' },
+    { name: 'Demo', path: '/#demo' },
     { name: 'About Us', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
 
   const isHome = location.pathname === '/';
-  const headerBg = isScrolled || !isHome ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5';
-  const textColor = isScrolled || !isHome ? 'text-gray-900' : 'text-white';
-  const linkColor = isScrolled || !isHome ? 'text-gray-600 hover:text-green-600' : 'text-gray-300 hover:text-white';
+  const headerBg = isScrolled || !isHome ? 'bg-white shadow-md py-3' : 'bg-white/80 backdrop-blur-md py-4';
+  const textColor = 'text-gray-800';
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg}`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center shadow-lg shadow-green-200 group-hover:scale-110 transition-transform">
-            <MessageSquare className="text-white w-6 h-6" />
+          <div className="w-10 h-10 bg-[#6366f1] rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200 group-hover:rotate-12 transition-transform">
+            <Zap className="text-white w-6 h-6" />
           </div>
-          <span className={`text-2xl font-black tracking-tighter transition-colors ${textColor}`}>Leadwave</span>
+          <div className="flex flex-col leading-none">
+            <span className="text-2xl font-black tracking-tight text-[#22c55e]">Lead <span className="text-[#f59e0b]">Wave</span></span>
+          </div>
         </Link>
         
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link 
               key={link.name}
               to={link.path} 
-              className={`text-sm font-bold transition-colors ${
-                location.pathname === link.path 
-                  ? 'text-green-500' 
-                  : linkColor
+              className={`text-sm font-bold transition-colors hover:text-[#22c55e] ${
+                location.pathname === link.path ? 'text-[#22c55e]' : 'text-gray-600'
               }`}
             >
               {link.name}
             </Link>
           ))}
           <a 
-            href="https://wa.me/916387617678?text=Hi, I want to book a strategy call" 
-            className="bg-green-500 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-green-600 transition-all shadow-md shadow-green-500/20"
+            href="https://wa.me/917261902348" 
+            className="bg-[#22c55e] text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-[#16a34a] transition-all shadow-md shadow-green-100"
           >
-            Book a Strategy Call
+            Download App
           </a>
         </div>
 
         <button 
-          className={`md:hidden ${textColor}`} 
+          className="lg:hidden text-gray-800" 
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X /> : <Menu />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="absolute top-full left-0 right-0 bg-white border-t border-gray-100 md:hidden overflow-hidden shadow-xl"
-          >
-            <div className="flex flex-col p-6 gap-4">
-              {navLinks.map((link) => (
-                <Link 
-                  key={link.name}
-                  to={link.path} 
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`text-lg font-bold ${
-                    location.pathname === link.path ? 'text-green-500' : 'text-gray-700'
-                  }`}
+          <>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 bg-black/50 z-[60] backdrop-blur-sm"
+            />
+            <motion.div 
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 bottom-0 w-[300px] bg-white z-[70] shadow-2xl p-8 flex flex-col"
+            >
+              <div className="flex items-center justify-between mb-12">
+                <div className="flex items-center gap-2">
+                  <div className="w-10 h-10 bg-[#6366f1] rounded-xl flex items-center justify-center shadow-lg">
+                    <Zap className="text-white w-6 h-6" />
+                  </div>
+                  <span className="text-xl font-black text-[#22c55e]">Lead <span className="text-[#f59e0b]">Wave</span></span>
+                </div>
+                <button onClick={() => setMobileMenuOpen(false)} className="text-gray-400 hover:text-gray-900 transition-colors">
+                  <X className="w-8 h-8" />
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-6">
+                {navLinks.map((link) => (
+                  <Link 
+                    key={link.name}
+                    to={link.path} 
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`text-xl font-bold transition-colors hover:text-[#22c55e] ${
+                      location.pathname === link.path ? 'text-[#22c55e]' : 'text-gray-700'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="mt-auto pt-8 border-t border-gray-100">
+                <a 
+                  href="https://wa.me/917261902348" 
+                  className="w-full bg-[#22c55e] text-white py-4 rounded-2xl font-black text-center text-lg flex items-center justify-center gap-2 shadow-xl shadow-green-100"
                 >
-                  {link.name}
-                </Link>
-              ))}
-              <a 
-                href="https://wa.me/916387617678" 
-                className="bg-green-500 text-white py-4 rounded-2xl font-bold text-center text-lg"
-              >
-                Book a Strategy Call
-              </a>
-            </div>
-          </motion.div>
+                  <MessageSquare className="w-5 h-5" /> Download App
+                </a>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
@@ -149,42 +177,55 @@ const Header = () => {
 };
 
 const Footer = () => (
-  <footer className="bg-black py-20 border-t border-white/5">
+  <footer className="bg-white py-20 border-t border-gray-100">
     <div className="max-w-7xl mx-auto px-6">
       <div className="grid md:grid-cols-4 gap-12 mb-16">
         <div className="col-span-2">
           <div className="flex items-center gap-2 mb-6">
-            <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
-              <MessageSquare className="text-white w-5 h-5" />
+            <div className="w-10 h-10 bg-[#6366f1] rounded-xl flex items-center justify-center shadow-lg">
+              <Zap className="text-white w-6 h-6" />
             </div>
-            <span className="text-xl font-black text-white">Leadwave</span>
+            <span className="text-2xl font-black tracking-tight text-[#22c55e]">Lead <span className="text-[#f59e0b]">Wave</span></span>
           </div>
-          <p className="text-gray-500 text-sm max-w-md leading-relaxed">
-            Leadwave - Empowering businesses with high-quality, targeted lead generation. हम आपके बिज़नेस के लिए हाई-कन्वर्टिंग लीड्स लाते हैं।
+          <p className="text-gray-500 text-sm max-w-md leading-relaxed mb-8">
+            Transform your business communication with AI-powered WhatsApp automation. Manage contacts, automate messages, and boost productivity with our desktop solution.
           </p>
+          <div className="space-y-4">
+            <div className="flex items-center gap-3 text-gray-500 text-sm">
+              <Mail className="w-4 h-4 text-[#22c55e]" /> technovedit@gmail.com
+            </div>
+            <div className="flex items-center gap-3 text-gray-500 text-sm">
+              <MessageSquare className="w-4 h-4 text-[#22c55e]" /> WhatsApp: +91 72619 02348
+            </div>
+            <div className="flex items-center gap-3 text-gray-500 text-sm">
+              <MapPin className="w-4 h-4 text-[#22c55e]" /> Mumbai, Maharashtra, India
+            </div>
+          </div>
         </div>
         <div>
-          <h4 className="text-white font-bold mb-6">Quick Links</h4>
+          <h4 className="text-gray-900 font-black mb-6 uppercase text-xs tracking-widest">Product</h4>
           <ul className="space-y-4">
-            <li><Link to="/" className="text-gray-500 hover:text-green-500 text-sm transition-colors">Home</Link></li>
-            <li><Link to="/services" className="text-gray-500 hover:text-green-500 text-sm transition-colors">Services</Link></li>
-            <li><Link to="/about" className="text-gray-500 hover:text-green-500 text-sm transition-colors">About Us</Link></li>
-            <li><Link to="/contact" className="text-gray-500 hover:text-green-500 text-sm transition-colors">Contact</Link></li>
+            <li><Link to="/#features" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Features</Link></li>
+            <li><Link to="/#pricing" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Pricing</Link></li>
+            <li><Link to="/#video" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Video Demo</Link></li>
+            <li><Link to="/contact" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Download</Link></li>
           </ul>
         </div>
         <div>
-          <h4 className="text-white font-bold mb-6">Legal</h4>
+          <h4 className="text-gray-900 font-black mb-6 uppercase text-xs tracking-widest">Company</h4>
           <ul className="space-y-4">
-            <li><a href="#" className="text-gray-500 hover:text-green-500 text-sm transition-colors">Privacy Policy</a></li>
-            <li><a href="#" className="text-gray-500 hover:text-green-500 text-sm transition-colors">Terms & Conditions</a></li>
+            <li><Link to="/about" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">About Us</Link></li>
+            <li><Link to="/contact" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Contact</Link></li>
+            <li><a href="#" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Privacy Policy</a></li>
+            <li><a href="#" className="text-gray-500 hover:text-[#22c55e] text-sm font-bold transition-colors">Terms of Service</a></li>
           </ul>
         </div>
       </div>
-      <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-gray-600 text-xs">© 2026 Leadwave.in. All Rights Reserved.</p>
+      <div className="pt-8 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p className="text-gray-400 text-xs font-bold">© 2025 Techno Ved. All rights reserved.</p>
         <div className="flex gap-6">
-          <a href="#" className="text-gray-600 hover:text-white transition-colors"><Globe className="w-4 h-4" /></a>
-          <a href="#" className="text-gray-600 hover:text-white transition-colors"><Mail className="w-4 h-4" /></a>
+          <a href="#" className="text-gray-400 hover:text-[#22c55e] transition-colors"><Globe className="w-5 h-5" /></a>
+          <a href="#" className="text-gray-400 hover:text-[#22c55e] transition-colors"><Mail className="w-5 h-5" /></a>
         </div>
       </div>
     </div>
@@ -194,130 +235,449 @@ const Footer = () => (
 // --- Page Components ---
 
 const Home = () => {
-  const navigate = useNavigate();
   return (
-    <main>
+    <main className="bg-white">
       {/* Hero Section */}
-      <section className="relative pt-48 pb-32 overflow-hidden bg-slate-950">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(34,197,94,0.15),transparent_70%)]" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-4xl md:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight">
-              Stop Chasing, <span className="text-green-500">Start Closing.</span><br />
-              आपके बिज़नेस के लिए हाई-कन्वर्टिंग लीड्स।
-            </h1>
-            <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-              हम आपके टारगेट ऑडियंस को ढूंढते हैं और उन्हें 'हॉट लीड्स' में बदलते हैं। आप कोल्ड कॉलिंग छोड़ें और सिर्फ अपनी सेल्स क्लोज़ करने पर फोकस करें।
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/contact" className="w-full sm:w-auto bg-green-500 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-green-600 transition-all shadow-xl shadow-green-500/20">
-                Get Your Free Proposal
-              </Link>
-              <Link to="/services" className="w-full sm:w-auto bg-white/5 border border-white/10 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white/10 transition-all backdrop-blur-sm">
-                View Our Services
-              </Link>
-            </div>
-          </motion.div>
+      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden bg-white">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="flex flex-col items-center text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#fef3c7] border border-[#f59e0b]/20 text-[#f59e0b] text-xs font-bold rounded-full mb-8"
+            >
+              <Zap className="w-3 h-3 fill-current" /> New: Multi-Account Management
+            </motion.div>
+            
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl md:text-6xl font-black text-gray-900 mb-6 leading-tight"
+            >
+              Lead Wave <span className="text-[#22c55e]">WhatsApp Desktop</span>
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-xl text-gray-500 max-w-2xl mb-10"
+            >
+              Transform Your Business Communication. Automate messages, and manage contacts with AI-powered intelligence.
+            </motion.p>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="flex flex-col sm:flex-row items-center gap-4 mb-12"
+            >
+              <a href="#pricing" className="bg-[#22c55e] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#16a34a] transition-all flex items-center gap-2 shadow-lg shadow-green-100">
+                Start Free Trial <ArrowRight className="w-5 h-5" />
+              </a>
+              <a href="#features" className="bg-white border border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all flex items-center gap-2">
+                <Menu className="w-5 h-5" /> View Features
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="flex items-center gap-6 text-sm text-gray-400 mb-16"
+            >
+              <div className="flex items-center gap-1">
+                <Star className="w-4 h-4 text-[#f59e0b] fill-current" /> 2-day free trial
+              </div>
+              <div className="flex items-center gap-1">
+                <CheckCircle2 className="w-4 h-4 text-[#22c55e]" /> No credit card required
+              </div>
+            </motion.div>
+
+            {/* Hero Image Placeholder */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="relative w-full max-w-5xl mx-auto"
+            >
+              <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#f59e0b]/10 rounded-full blur-3xl" />
+              <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#6366f1]/10 rounded-full blur-3xl" />
+              
+              <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden relative">
+                {/* PLACEHOLDER: Replace with actual dashboard screenshot */}
+                <div className="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                  <div className="text-center p-8">
+                    <div className="w-20 h-20 bg-[#6366f1] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl">
+                      <Zap className="text-white w-10 h-10" />
+                    </div>
+                    <p className="text-gray-400 font-medium">Leadwave Dashboard Preview</p>
+                    <p className="text-xs text-gray-300 mt-2">Replace with your dashboard image</p>
+                  </div>
+                </div>
+                
+                {/* Floating Stats Card */}
+                <div className="absolute top-10 right-10 bg-white p-4 rounded-2xl shadow-xl border border-gray-50 hidden md:block">
+                  <div className="text-[#f59e0b] font-black text-2xl">99.9%</div>
+                  <div className="text-gray-400 text-xs font-bold uppercase">Uptime</div>
+                </div>
+                
+                <div className="absolute bottom-10 left-10 bg-white p-4 rounded-2xl shadow-xl border border-gray-50 hidden md:block">
+                  <div className="text-[#22c55e] font-black text-2xl">300+</div>
+                  <div className="text-gray-400 text-xs font-bold uppercase">Happy Users</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Problem & Solution */}
-      <section className="py-24 bg-white">
+      {/* What's New Section */}
+      <section className="py-20 bg-white border-t border-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-1 bg-[#22c55e]/10 text-[#22c55e] text-xs font-bold rounded-full mb-4">
+              <Zap className="w-3 h-3 fill-current" /> Latest Release
+            </div>
+            <h2 className="text-4xl font-black text-gray-900 mb-4">What's New in <span className="text-[#22c55e]">Version 3.0.0</span></h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">We've packed this release with powerful new features, improvements, and fixes to supercharge your WhatsApp marketing workflow.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Enhanced */}
+            <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-[#22c55e]/10 rounded-xl flex items-center justify-center">
+                  <Zap className="text-[#22c55e] w-5 h-5" />
+                </div>
+                <h3 className="text-xl font-bold">Enhanced</h3>
+              </div>
+              <ul className="space-y-4">
+                {[
+                  "Revamped Dashboard UI for a smoother experience",
+                  "Support Button with official company information",
+                  "Removed unnecessary device socket reconnection reloads",
+                  "Device recognition enabled across all modules",
+                  "Label Export in Group Grabber (Experimental)",
+                  "Improved Number Filtering accuracy"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
+                    <CheckCircle2 className="w-4 h-4 text-[#22c55e] shrink-0 mt-0.5" /> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Fixed */}
+            <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-[#f59e0b]/10 rounded-xl flex items-center justify-center">
+                  <AlertCircle className="text-[#f59e0b] w-5 h-5" />
+                </div>
+                <h3 className="text-xl font-bold">Fixed</h3>
+              </div>
+              <ul className="space-y-4">
+                {[
+                  "Fixed Contact Group Name Editing issue",
+                  "Resolved Campaign Pause issue"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
+                    <CheckCircle2 className="w-4 h-4 text-[#f59e0b] shrink-0 mt-0.5" /> {item}
+                  </li>
+                ))}
+                <div className="mt-8 p-4 bg-gray-50 rounded-2xl flex items-center gap-2 text-xs font-bold text-gray-400">
+                  <CheckCircle2 className="w-4 h-4 text-[#22c55e]" /> All critical issues resolved
+                </div>
+              </ul>
+            </div>
+
+            {/* Added */}
+            <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-[#6366f1]/10 rounded-xl flex items-center justify-center">
+                  <Plus className="text-[#6366f1] w-5 h-5" />
+                </div>
+                <h3 className="text-xl font-bold">Added</h3>
+              </div>
+              <ul className="space-y-4">
+                {[
+                  "Live Chat Module with basic CRM features",
+                  "Cloud-Based Licensing System for enhanced security",
+                  "Device restrictions during license generation",
+                  "Option to disable licenses when required"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
+                    <Plus className="w-4 h-4 text-[#6366f1] shrink-0 mt-0.5" /> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-6">क्या आप मार्केटिंग पर पैसा जला रहे हैं, लेकिन सही ग्राहक नहीं मिल रहे?</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">विज्ञापन चलाना आसान है, लेकिन सही और क्वालिटी लोगों तक पहुँचना मुश्किल। Leadwave इस समस्या को 3 तरीकों से हल करता है:</p>
+            <div className="inline-flex items-center gap-2 px-4 py-1 bg-[#f59e0b]/10 text-[#f59e0b] text-xs font-bold rounded-full mb-4">
+              <Zap className="w-3 h-3 fill-current" /> Powerful Features
+            </div>
+            <h2 className="text-4xl font-black text-gray-900 mb-4">Everything you need to <span className="text-[#22c55e]">automate WhatsApp</span></h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">Powerful features designed to streamline your WhatsApp communication and boost your business productivity with cutting-edge automation.</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+
+          <div className="space-y-24">
             {[
-              { icon: CheckCircle2, title: "100% Verified Leads", desc: "कोई फेक डेटा नहीं, सिर्फ असली और इंट्रेस्टेड खरीदार।" },
-              { icon: Target, title: "Laser-Targeted Audience", desc: "हम उसी ऑडियंस को टारगेट करते हैं जिन्हें सच में आपकी सर्विस की जरूरत है।" },
-              { icon: TrendingUp, title: "High Conversion Rate", desc: "हमारी लीड्स नर्चर की हुई होती हैं, जो आसानी से और जल्दी क्लोज़ होती हैं।" }
-            ].map((item, idx) => (
-              <div key={idx} className="p-8 bg-gray-50 rounded-3xl border border-gray-100 hover:border-green-500 transition-all group">
-                <div className="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-green-500 transition-colors">
-                  <item.icon className="w-7 h-7 text-green-600 group-hover:text-white transition-colors" />
+              {
+                title: "Multi-Device Support",
+                desc: "Connect and manage multiple WhatsApp accounts from a single desktop application with seamless synchronization.",
+                icon: Smartphone,
+                color: "bg-[#22c55e]"
+              },
+              {
+                title: "Bulk Messaging",
+                desc: "Send personalized messages to multiple contacts simultaneously with smart scheduling and delivery optimization.",
+                icon: MessageSquare,
+                color: "bg-[#6366f1]"
+              },
+              {
+                title: "Chatbot",
+                desc: "Intelligent automated responses powered by advanced AI to handle customer inquiries 24/7 with human-like interactions.",
+                icon: Zap,
+                color: "bg-[#f59e0b]"
+              },
+              {
+                title: "Message Templates",
+                desc: "Create and manage reusable message templates for consistent communication.",
+                icon: Globe,
+                color: "bg-[#22c55e]"
+              }
+            ].map((feature, idx) => (
+              <div key={idx} className={`flex flex-col ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-16`}>
+                <div className="flex-1">
+                  <div className={`w-14 h-14 ${feature.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg`}>
+                    <feature.icon className="text-white w-7 h-7" />
+                  </div>
+                  <h3 className="text-3xl font-black text-gray-900 mb-4">{feature.title}</h3>
+                  <p className="text-gray-500 text-lg mb-8 leading-relaxed">{feature.desc}</p>
+                  <a href="#" className="text-[#22c55e] font-bold flex items-center gap-2 hover:gap-4 transition-all">
+                    Learn more <ArrowRight className="w-5 h-5" />
+                  </a>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                <div className="flex-1 w-full">
+                  <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden aspect-video flex items-center justify-center">
+                    {/* PLACEHOLDER: Replace with feature specific screenshot */}
+                    <div className="text-center p-8 bg-gray-50 w-full h-full flex flex-col items-center justify-center">
+                      <feature.icon className={`w-16 h-16 ${feature.color.replace('bg-', 'text-')} mb-4 opacity-20`} />
+                      <p className="text-gray-400 font-bold">{feature.title} Preview</p>
+                      <p className="text-xs text-gray-300 mt-2">Replace with actual screenshot</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Pricing Section - Core Requirement */}
+      {/* Pricing Section */}
+      <section id="pricing" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-2 px-4 py-1 bg-[#f59e0b]/10 text-[#f59e0b] text-xs font-bold rounded-full mb-4">
+              <Zap className="w-3 h-3 fill-current" /> Premium Desktop Application
+            </div>
+            <h2 className="text-4xl font-black text-gray-900 mb-4">Affordable Subscription Plans</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">Choose the plan that fits your business needs. One-time setup, recurring access.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {[
+              { 
+                title: "Monthly Plan", 
+                price: "49", 
+                period: "month", 
+                popular: false,
+                features: ["Bulk Messaging", "Basic Chatbot", "Contact Management", "24/7 Support"]
+              },
+              { 
+                title: "Quarterly Plan", 
+                price: "99", 
+                period: "3 months", 
+                popular: true,
+                features: ["Everything in Monthly", "Multi-Device Sync", "Advanced AI Chatbot", "Priority Support", "License Key System"]
+              },
+              { 
+                title: "Annual Plan", 
+                price: "299", 
+                period: "year", 
+                popular: false,
+                features: ["Everything in Quarterly", "Unlimited License Keys", "White Label Option", "Dedicated Account Manager", "Custom API Integration"]
+              }
+            ].map((plan, idx) => (
+              <div key={idx} className={`relative p-8 rounded-[40px] border-2 transition-all flex flex-col ${
+                plan.popular ? 'border-[#22c55e] bg-white shadow-2xl scale-105 z-10' : 'border-gray-100 bg-gray-50'
+              }`}>
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#22c55e] text-white px-4 py-1 rounded-full text-xs font-bold shadow-lg">
+                    MOST POPULAR
+                  </div>
+                )}
+                <h3 className="text-2xl font-black text-gray-900 mb-4">{plan.title}</h3>
+                <div className="flex items-baseline gap-1 mb-8">
+                  <span className="text-5xl font-black text-gray-900">₹{plan.price}</span>
+                  <span className="text-gray-400 text-sm font-bold">/{plan.period}</span>
+                </div>
+                
+                <ul className="space-y-4 mb-10 flex-1">
+                  {plan.features.map((feature, fIdx) => (
+                    <li key={fIdx} className="flex items-center gap-3 text-sm text-gray-600 font-medium">
+                      <CheckCircle2 className="w-5 h-5 text-[#22c55e] shrink-0" /> {feature}
+                    </li>
+                  ))}
+                </ul>
+                
+                <a 
+                  href={`https://wa.me/917261902348?text=I want to buy the ${plan.title}`} 
+                  className={`w-full py-4 rounded-2xl font-black text-lg text-center transition-all flex items-center justify-center gap-2 ${
+                    plan.popular 
+                      ? 'bg-[#22c55e] text-white hover:bg-[#16a34a] shadow-xl shadow-green-100' 
+                      : 'bg-white border-2 border-gray-100 text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  <MessageSquare className="w-5 h-5" /> Buy Now
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Activation Process */}
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-6">Affordable Reseller Plans</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">अपने Business के लिए सही Plan चुनें।</p>
+            <h2 className="text-4xl font-black text-gray-900 mb-4">Complete Activation Process</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">Follow these visual steps to activate your Lead Wave application and start automating your WhatsApp communications.</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+          <div className="grid md:grid-cols-5 gap-8 mb-20">
             {[
-              { title: "Monthly", price: "49", period: "month", popular: false },
-              { title: "Quarterly", price: "99", period: "3 months", popular: true },
-              { title: "Annually", price: "299", period: "year", popular: false }
-            ].map((plan, idx) => (
-              <div key={idx} className={`relative p-8 rounded-3xl border-2 transition-all ${
-                plan.popular ? 'border-green-500 bg-white shadow-xl scale-105' : 'border-gray-200 bg-gray-50'
-              }`}>
-                {plan.popular && <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-green-500 text-white px-4 py-1 rounded-full text-xs font-bold">MOST POPULAR</div>}
-                <h3 className="text-xl font-bold mb-4">{plan.title}</h3>
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-4xl font-black">₹{plan.price}</span>
-                  <span className="text-gray-500 text-sm">/{plan.period}</span>
+              { step: "1", title: "Download & Install", desc: "Download the Lead Wave desktop application file and install it on your computer.", icon: Smartphone },
+              { step: "2", title: "Get Your License Code", desc: "After installation, the app will display a unique license code. Copy this code.", icon: Zap },
+              { step: "3", title: "Share on WhatsApp", desc: "Send your license code to our WhatsApp number +91 72619 02348.", icon: MessageSquare },
+              { step: "4", title: "Enter Activation Code", desc: "Enter the License Activation Code you received from our admin into the app.", icon: CheckCircle2 },
+              { step: "5", title: "Start Using Lead Wave", desc: "Once activated, you can immediately start automating your WhatsApp business.", icon: Zap }
+            ].map((item, i) => (
+              <div key={i} className="relative text-center">
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl border border-gray-50 relative">
+                  <item.icon className="w-7 h-7 text-[#22c55e]" />
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-[#22c55e] text-white rounded-full flex items-center justify-center text-sm font-black shadow-lg">
+                    {item.step}
+                  </div>
                 </div>
-                <ul className="space-y-4 mb-8">
-                  <li className="flex items-center gap-2 text-sm text-gray-600"><CheckCircle2 className="w-4 h-4 text-green-500" /> WhatsApp Automation</li>
-                  <li className="flex items-center gap-2 text-sm text-gray-600"><CheckCircle2 className="w-4 h-4 text-green-500" /> Bulk Messaging</li>
-                  <li className="flex items-center gap-2 text-sm text-gray-600"><CheckCircle2 className="w-4 h-4 text-green-500" /> 24/7 Support</li>
-                </ul>
-                <a href={`https://wa.me/916387617678?text=I want the ${plan.title} plan`} className={`block w-full py-4 rounded-xl font-bold text-center transition-all ${
-                  plan.popular ? 'bg-green-500 text-white hover:bg-green-600' : 'bg-white border-2 border-green-500 text-green-600 hover:bg-green-50'
-                }`}>Buy Now</a>
+                <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-gray-400 text-xs leading-relaxed">{item.desc}</p>
               </div>
             ))}
+          </div>
+
+          {/* Visual Steps Placeholder */}
+          <div className="max-w-4xl mx-auto space-y-12">
+            <div className="text-center">
+              <div className="inline-flex items-center gap-2 px-4 py-1 bg-[#22c55e]/10 text-[#22c55e] text-xs font-bold rounded-full mb-8">
+                1. Copy License Code
+              </div>
+              <h3 className="text-2xl font-black mb-6">After Installation</h3>
+              <div className="bg-white p-4 rounded-3xl shadow-xl border border-gray-100 aspect-video flex items-center justify-center">
+                {/* PLACEHOLDER: Replace with activation screen screenshot */}
+                <div className="text-center">
+                  <p className="text-gray-400 font-bold">Activation Screen Screenshot</p>
+                  <p className="text-xs text-gray-300 mt-2">Replace with actual image</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <div className="inline-flex items-center gap-2 px-4 py-1 bg-[#22c55e]/10 text-[#22c55e] text-xs font-bold rounded-full mb-8">
+                2. Enter Activation Code
+              </div>
+              <h3 className="text-2xl font-black mb-6">After WhatsApp Response</h3>
+              <div className="bg-white p-4 rounded-3xl shadow-xl border border-gray-100 aspect-video flex items-center justify-center">
+                {/* PLACEHOLDER: Replace with license key entry screen screenshot */}
+                <div className="text-center">
+                  <p className="text-gray-400 font-bold">License Key Entry Screenshot</p>
+                  <p className="text-xs text-gray-300 mt-2">Replace with actual image</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
+      {/* Video Section */}
       <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-6">लीड जनरेशन का हमारा 3-स्टेप प्रूवन फॉर्मूला</h2>
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-4xl font-black text-gray-900 mb-4">Watch.Learn.Done <span className="text-[#f59e0b]">Simply.</span></h2>
+          <p className="text-gray-500 max-w-2xl mx-auto mb-16">See Lead Wave in action! Watch our comprehensive tutorial and discover how easy it is to automate your WhatsApp business communication.</p>
+          
+          <div className="max-w-5xl mx-auto bg-slate-900 rounded-[40px] overflow-hidden shadow-2xl relative group">
+            {/* PLACEHOLDER: Replace with actual video embed */}
+            <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
+              <div className="w-24 h-24 bg-[#22c55e] rounded-full flex items-center justify-center shadow-2xl shadow-green-500/20 group-hover:scale-110 transition-transform cursor-pointer">
+                <Plus className="text-white w-10 h-10 rotate-45" /> {/* Play icon placeholder */}
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <p className="text-white/20 font-black text-4xl uppercase tracking-widest">Video Tutorial Placeholder</p>
+              </div>
+            </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-12">
+          
+          <div className="grid md:grid-cols-3 gap-8 mt-16 max-w-5xl mx-auto">
             {[
-              { step: "1", title: "Discovery", desc: "हम आपके बिज़नेस मॉडल, आपके गोल्स और आपके आइडियल कस्टमर प्रोफाइल (ICP) को गहराई से समझते हैं।" },
-              { step: "2", title: "Campaign Setup", desc: "हम आपके लिए कस्टमाइज़्ड, डेटा-ड्रिवन और हाई-कन्वर्टिंग एड कैंपेन तैयार करके रन करते हैं।" },
-              { step: "3", title: "Lead Delivery", desc: "आपके CRM, ईमेल या वॉट्सऐप पर सीधे क्वालिटी लीड्स रियल-टाइम में डिलीवर होती हैं।" }
-            ].map((item, idx) => (
-              <div key={idx} className="text-center">
-                <div className="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-6 shadow-lg shadow-green-200">
-                  {item.step}
+              { title: "Step-by-Step Guide", desc: "Complete walkthrough from installation to advanced features", icon: CheckCircle2 },
+              { title: "Quick Setup", desc: "Get started in minutes with our easy setup process", icon: Clock },
+              { title: "Pro Tips", desc: "Learn advanced techniques to maximize your results", icon: Zap }
+            ].map((item, i) => (
+              <div key={i} className="flex gap-4 text-left">
+                <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center shrink-0">
+                  <item.icon className="w-6 h-6 text-[#22c55e]" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">{item.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                <div>
+                  <h4 className="font-bold text-gray-900">{item.title}</h4>
+                  <p className="text-gray-400 text-sm">{item.desc}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="py-24 bg-green-500 text-white text-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl md:text-5xl font-black mb-8 leading-tight">अपने बिज़नेस को नेक्स्ट लेवल पर ले जाने के लिए तैयार हैं?</h2>
-          <p className="text-lg mb-10 opacity-90">आज ही हमारे साथ एक फ्री स्ट्रेटेजी कॉल बुक करें और जानें कि हम आपके लिए कितने नए ग्राहक ला सकते हैं।</p>
-          <Link to="/contact" className="inline-block bg-white text-green-600 px-12 py-5 rounded-2xl font-black text-xl hover:bg-gray-100 transition-all shadow-xl">
-            Let's Talk Growth
-          </Link>
+      {/* Ready to Get Started */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1 bg-[#f59e0b] text-white text-xs font-bold rounded-full mb-8 shadow-lg shadow-amber-100">
+            <Star className="w-3 h-3 fill-current" /> Join 300+ Happy Users
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-8 leading-tight">Ready to transform <span className="text-[#22c55e]">your WhatsApp communication?</span></h2>
+          <p className="text-gray-500 text-lg mb-12">Join 300+ businesses already using Lead Wave Desktop to automate their WhatsApp workflows and boost productivity.</p>
+          
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+            <a href="#" className="w-full sm:w-auto bg-[#22c55e] text-white px-10 py-5 rounded-2xl font-black text-xl hover:bg-[#16a34a] transition-all shadow-xl shadow-green-100 flex items-center justify-center gap-2">
+              Start Free Trial <ArrowRight className="w-5 h-5" />
+            </a>
+            <a href="#" className="w-full sm:w-auto bg-white border-2 border-gray-100 text-gray-700 px-10 py-5 rounded-2xl font-black text-xl hover:bg-gray-50 transition-all flex items-center justify-center gap-2">
+              Schedule Demo <ArrowRight className="w-5 h-5" />
+            </a>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-8 text-sm font-bold text-gray-400">
+            <div className="flex items-center gap-2"><Shield className="w-5 h-5 text-[#22c55e]" /> No credit card required</div>
+            <div className="flex items-center gap-2"><Clock className="w-5 h-5 text-[#22c55e]" /> 2-day free trial</div>
+            <div className="flex items-center gap-2"><Star className="w-5 h-5 text-[#22c55e]" /> Cancel anytime</div>
+          </div>
         </div>
       </section>
     </main>
@@ -328,36 +688,41 @@ const Services = () => (
   <main className="pt-32 pb-24">
     <div className="max-w-7xl mx-auto px-6">
       <div className="text-center mb-20">
-        <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-6">हमारी लीड जनरेशन सर्विसेज़</h1>
-        <p className="text-gray-600 max-w-2xl mx-auto">हम कोई एक 'फिक्स' फॉर्मूला हर जगह नहीं लगाते। आपके बिज़नेस की ज़रूरत के हिसाब से हम सही चैनल का इस्तेमाल करते हैं।</p>
+        <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-6">Our WhatsApp Automation Services</h1>
+        <p className="text-gray-600 max-w-2xl mx-auto">We provide a comprehensive suite of tools and services to help you automate your business communication and scale your marketing efforts.</p>
       </div>
 
       <div className="grid gap-12">
         {[
           { 
-            title: "B2B Lead Generation", 
-            desc: "LinkedIn आउटरीच, कोल्ड ईमेल मार्केटिंग और एडवांस डेटा स्क्रैपिंग के ज़रिए हम आपके बिज़नेस को सही कंपनी के डिसीजन मेकर्स (Decision Makers) तक पहुँचाते हैं। हाई-टिकट सेल्स के लिए यह सबसे बेहतरीन सर्विस है।",
-            icon: Users
+            title: "Bulk Messaging Automation", 
+            desc: "Send thousands of personalized messages to your contacts with smart scheduling, anti-ban technology, and detailed delivery reports. Perfect for announcements, promotions, and updates.",
+            icon: MessageSquare
           },
           { 
-            title: "Targeted Ad Campaigns", 
-            desc: "हम डेटा-ड्रिवन विज्ञापन चलाते हैं। बेहतरीन ऐड क्रिएटिव्स और लेज़र-टार्गेटिंग के जरिए हम कम से कम कॉस्ट (CPL) में ज़्यादा से ज़्यादा क्वालिटी लीड्स जनरेट करते हैं। हम लोकल और नेशनल, दोनों तरह के कैंपेन सँभालते हैं।",
+            title: "AI-Powered Chatbots", 
+            desc: "Deploy intelligent chatbots that handle customer inquiries 24/7. Our bots use advanced logic to provide human-like interactions, qualify leads, and even process orders automatically.",
             icon: Zap
           },
           { 
-            title: "High-Converting Sales Funnels", 
-            desc: "ट्रैफ़िक लाना सिर्फ आधा काम है। हम ऐसे लैंडिंग पेज और सेल्स फ़नल डिज़ाइन करते हैं जो विज़िटर्स को एंगेज करते हैं और उन्हें आपकी लीड्स में कन्वर्ट करने के लिए मनोवैज्ञानिक रूप से प्रेरित करते हैं।",
-            icon: BarChart3
+            title: "Contact & Group Management", 
+            desc: "Easily manage your contact lists and WhatsApp groups. Extract members from groups, filter active numbers, and organize your audience into targeted segments for better conversion.",
+            icon: Users
+          },
+          { 
+            title: "Reseller & Licensing System", 
+            desc: "Start your own WhatsApp marketing business with our cloud-based licensing system. Generate and manage license keys for your own clients and keep 100% of the profits.",
+            icon: Shield
           }
         ].map((service, idx) => (
-          <div key={idx} className="flex flex-col md:flex-row gap-12 items-center p-12 bg-gray-50 rounded-[40px] border border-gray-100 hover:border-green-500 transition-all group">
-            <div className="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shrink-0 shadow-sm group-hover:bg-green-500 transition-colors">
-              <service.icon className="w-10 h-10 text-green-500 group-hover:text-white transition-colors" />
+          <div key={idx} className="flex flex-col md:flex-row gap-12 items-center p-12 bg-gray-50 rounded-[40px] border border-gray-100 hover:border-[#22c55e] transition-all group">
+            <div className="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shrink-0 shadow-sm group-hover:bg-[#22c55e] transition-colors">
+              <service.icon className="w-10 h-10 text-[#22c55e] group-hover:text-white transition-colors" />
             </div>
             <div>
               <h3 className="text-2xl font-black mb-4">{service.title}</h3>
               <p className="text-gray-600 leading-relaxed">{service.desc}</p>
-              <Link to="/contact" className="inline-flex items-center gap-2 mt-6 text-green-600 font-bold hover:gap-4 transition-all">
+              <Link to="/contact" className="inline-flex items-center gap-2 mt-6 text-[#22c55e] font-bold hover:gap-4 transition-all">
                 Get Started <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
@@ -373,25 +738,25 @@ const About = () => (
     <div className="max-w-7xl mx-auto px-6">
       <div className="grid md:grid-cols-2 gap-20 items-center mb-32">
         <div>
-          <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-8 leading-tight">Leadwave के पीछे की कहानी</h1>
+          <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-8 leading-tight">The Story Behind Leadwave</h1>
           <p className="text-gray-600 text-lg leading-relaxed mb-8">
-            Leadwave में, हमारा विज़न बहुत साफ़ है: बिज़नेस ओनर्स की सबसे बड़ी समस्या 'लीड्स की कमी' को हमेशा के लिए खत्म करना। हम सिर्फ एक आम मार्केटिंग एजेंसी नहीं हैं जो सिर्फ क्लिक्स और इम्प्रेस्शंस दिखाती है; हम आपके 'ग्रोथ पार्टनर' हैं। हमारा फोकस सिर्फ एक चीज़ पर होता है—आपके बिज़नेस का रेवेन्यू बढ़ाना।
+            At Leadwave, our vision is simple: to empower businesses by eliminating the complexities of manual WhatsApp marketing. We aren't just a software provider; we are your growth partners. Our focus is on building powerful, intuitive automation tools that help you reach your audience more effectively and grow your revenue.
           </p>
           <div className="flex gap-4">
             <div className="p-6 bg-green-50 rounded-2xl">
-              <div className="text-3xl font-black text-green-600 mb-1">500+</div>
-              <div className="text-gray-500 text-xs font-bold uppercase">Clients Served</div>
+              <div className="text-3xl font-black text-[#22c55e] mb-1">300+</div>
+              <div className="text-gray-500 text-xs font-bold uppercase">Active Users</div>
             </div>
             <div className="p-6 bg-green-50 rounded-2xl">
-              <div className="text-3xl font-black text-green-600 mb-1">1M+</div>
-              <div className="text-gray-500 text-xs font-bold uppercase">Leads Generated</div>
+              <div className="text-3xl font-black text-[#22c55e] mb-1">1M+</div>
+              <div className="text-gray-500 text-xs font-bold uppercase">Messages Sent</div>
             </div>
           </div>
         </div>
         <div className="relative">
-          <div className="aspect-square bg-green-500 rounded-[60px] overflow-hidden shadow-2xl">
+          <div className="aspect-square bg-[#22c55e] rounded-[60px] overflow-hidden shadow-2xl">
             <img 
-              src="https://picsum.photos/seed/business/800/800" 
+              src="https://picsum.photos/seed/software/800/800" 
               alt="Our Story" 
               className="w-full h-full object-cover mix-blend-overlay opacity-50"
               referrerPolicy="no-referrer"
@@ -399,7 +764,7 @@ const About = () => (
           </div>
           <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-white p-8 rounded-[40px] shadow-xl border border-gray-100 hidden md:block">
             <div className="w-full h-full bg-green-100 rounded-2xl flex items-center justify-center">
-              <TrendingUp className="w-12 h-12 text-green-600" />
+              <TrendingUp className="w-12 h-12 text-[#22c55e]" />
             </div>
           </div>
         </div>
@@ -409,12 +774,12 @@ const About = () => (
         <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-12">Why Choose Leadwave?</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {[
-            { title: "Data-Driven Approach", desc: "हम अंदाज़े पर नहीं, डेटा और फैक्ट्स पर काम करते हैं।" },
-            { title: "Quality Over Quantity", desc: "100 बेकार लीड्स से अच्छी 10 क्वालिटी लीड्स हैं जो कन्वर्ट हों।" },
-            { title: "Transparent Reporting", desc: "आपका पैसा कहाँ लग रहा है और क्या रिजल्ट आ रहा है, इसकी पूरी ट्रांसपेरेंसी हम रखते हैं।" }
+            { title: "Automation First", desc: "We believe in working smarter, not harder. Our tools automate the repetitive tasks so you can focus on strategy." },
+            { title: "Reliability & Security", desc: "Built with the latest technology to ensure your account safety and message delivery reliability." },
+            { title: "Dedicated Support", desc: "Our team is always ready to help you overcome any technical challenges and maximize your results." }
           ].map((item, idx) => (
             <div key={idx} className="p-10 bg-gray-50 rounded-[40px] text-left border border-gray-100">
-              <div className="w-12 h-12 bg-green-500 text-white rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-green-100">
+              <div className="w-12 h-12 bg-[#22c55e] text-white rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-green-100">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold mb-4">{item.title}</h3>
@@ -433,21 +798,21 @@ const Contact = () => {
     email: '',
     phone: '',
     company: '',
-    service: 'B2B Leads'
+    service: 'Monthly Plan'
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const message = `New Lead Request:\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCompany: ${formData.company}\nService: ${formData.service}`;
-    window.open(`https://wa.me/916387617678?text=${encodeURIComponent(message)}`, '_blank');
+    const message = `New Leadwave Inquiry:\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCompany: ${formData.company}\nPlan: ${formData.service}`;
+    window.open(`https://wa.me/917261902348?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (
     <main className="pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
-          <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-6">चलिए कनेक्ट करते हैं!</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">क्या आपके पास कोई प्रोजेक्ट है या लीड जनरेशन से जुड़ा कोई सवाल है? नीचे दिए गए फॉर्म को भरें या हमें सीधे संपर्क करें।</p>
+          <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-6">Let's Connect!</h1>
+          <p className="text-gray-600 max-w-2xl mx-auto">Have questions about Leadwave or need help with activation? Fill out the form below or contact us directly via WhatsApp.</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
@@ -457,25 +822,25 @@ const Contact = () => {
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm">
-                    <Mail className="w-5 h-5 text-green-500" />
+                    <Mail className="w-5 h-5 text-[#22c55e]" />
                   </div>
                   <div>
                     <div className="text-xs font-bold text-gray-400 uppercase">Email</div>
-                    <div className="font-bold text-gray-900">hello@getleadwave.in</div>
+                    <div className="font-bold text-gray-900">technovedit@gmail.com</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm">
-                    <Phone className="w-5 h-5 text-green-500" />
+                    <Phone className="w-5 h-5 text-[#22c55e]" />
                   </div>
                   <div>
                     <div className="text-xs font-bold text-gray-400 uppercase">Phone</div>
-                    <div className="font-bold text-gray-900">+91 6387617678</div>
+                    <div className="font-bold text-gray-900">+91 72619 02348</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm">
-                    <Clock className="w-5 h-5 text-green-500" />
+                    <Clock className="w-5 h-5 text-[#22c55e]" />
                   </div>
                   <div>
                     <div className="text-xs font-bold text-gray-400 uppercase">Working Hours</div>
@@ -484,8 +849,8 @@ const Contact = () => {
                 </div>
               </div>
               <a 
-                href="https://wa.me/916387617678" 
-                className="flex items-center justify-center gap-2 mt-10 bg-green-500 text-white py-5 rounded-2xl font-black hover:bg-green-600 transition-all shadow-lg shadow-green-100"
+                href="https://wa.me/917261902348" 
+                className="flex items-center justify-center gap-2 mt-10 bg-[#22c55e] text-white py-5 rounded-2xl font-black hover:bg-[#16a34a] transition-all shadow-lg shadow-green-100"
               >
                 <MessageSquare className="w-6 h-6" /> Click here to chat on WhatsApp
               </a>
@@ -493,7 +858,7 @@ const Contact = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="p-10 bg-white rounded-[40px] border border-gray-100 shadow-xl space-y-6">
-            <h3 className="text-2xl font-black mb-4">Lead Capture Form</h3>
+            <h3 className="text-2xl font-black mb-4">Inquiry Form</h3>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-gray-400 uppercase">Full Name</label>
@@ -501,7 +866,7 @@ const Contact = () => {
                   required
                   type="text" 
                   placeholder="John Doe"
-                  className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-xl focus:outline-none focus:border-green-500 transition-all"
+                  className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-xl focus:outline-none focus:border-[#22c55e] transition-all"
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
                 />
@@ -512,7 +877,7 @@ const Contact = () => {
                   required
                   type="email" 
                   placeholder="john@example.com"
-                  className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-xl focus:outline-none focus:border-green-500 transition-all"
+                  className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-xl focus:outline-none focus:border-[#22c55e] transition-all"
                   value={formData.email}
                   onChange={(e) => setFormData({...formData, email: e.target.value})}
                 />
@@ -525,7 +890,7 @@ const Contact = () => {
                   required
                   type="tel" 
                   placeholder="+91 0000000000"
-                  className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-xl focus:outline-none focus:border-green-500 transition-all"
+                  className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-xl focus:outline-none focus:border-[#22c55e] transition-all"
                   value={formData.phone}
                   onChange={(e) => setFormData({...formData, phone: e.target.value})}
                 />
@@ -536,30 +901,30 @@ const Contact = () => {
                   required
                   type="text" 
                   placeholder="Your Business"
-                  className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-xl focus:outline-none focus:border-green-500 transition-all"
+                  className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-xl focus:outline-none focus:border-[#22c55e] transition-all"
                   value={formData.company}
                   onChange={(e) => setFormData({...formData, company: e.target.value})}
                 />
               </div>
             </div>
             <div className="space-y-2">
-              <label className="text-xs font-bold text-gray-400 uppercase">Interested Service</label>
+              <label className="text-xs font-bold text-gray-400 uppercase">Interested Plan</label>
               <select 
-                className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-xl focus:outline-none focus:border-green-500 transition-all appearance-none"
+                className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-xl focus:outline-none focus:border-[#22c55e] transition-all appearance-none"
                 value={formData.service}
                 onChange={(e) => setFormData({...formData, service: e.target.value})}
               >
-                <option>B2B Leads</option>
-                <option>Social Media Ads</option>
-                <option>Funnel Building</option>
-                <option>Other</option>
+                <option>Monthly Plan</option>
+                <option>Quarterly Plan</option>
+                <option>Annual Plan</option>
+                <option>Other / Custom</option>
               </select>
             </div>
             <button 
               type="submit"
-              className="w-full bg-green-500 text-white py-5 rounded-2xl font-black text-lg hover:bg-green-600 transition-all shadow-xl shadow-green-500/20 flex items-center justify-center gap-2"
+              className="w-full bg-[#22c55e] text-white py-5 rounded-2xl font-black text-lg hover:bg-[#16a34a] transition-all shadow-xl shadow-green-100 flex items-center justify-center gap-2"
             >
-              Send Message / Request a Call <Send className="w-5 h-5" />
+              Send Inquiry <Send className="w-5 h-5" />
             </button>
           </form>
         </div>
@@ -574,6 +939,7 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
+      <HashScrollHandler />
       <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-green-100 selection:text-green-900">
         <Header />
         <Routes>
@@ -586,7 +952,7 @@ export default function App() {
         
         {/* WhatsApp Floating Button */}
         <a 
-          href="https://wa.me/916387617678?text=Hi, I need information about Leadwave" 
+          href="https://wa.me/917261902348?text=Hi, I need information about Leadwave" 
           className="fixed bottom-8 right-8 w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center shadow-2xl shadow-green-500/40 z-50 hover:scale-110 transition-transform animate-bounce"
           style={{ animationDuration: '3s' }}
         >
@@ -596,3 +962,21 @@ export default function App() {
     </Router>
   );
 }
+
+const HashScrollHandler = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
+
+  return null;
+};
