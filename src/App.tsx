@@ -249,7 +249,7 @@ const Home = () => {
               animate={{ opacity: 1, y: 0 }}
               className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#fef3c7] border border-[#f59e0b]/20 text-[#f59e0b] text-xs font-bold rounded-full mb-8"
             >
-              <Zap className="w-3 h-3 fill-current" /> New: Multi-Account Management
+              <Zap className="w-3 h-3 fill-current" /> New in v5.0.0: Device Pairing via Code
             </motion.div>
             
             <motion.h1 
@@ -343,27 +343,29 @@ const Home = () => {
             <div className="inline-flex items-center gap-2 px-4 py-1 bg-[#22c55e]/10 text-[#22c55e] text-xs font-bold rounded-full mb-4">
               <Zap className="w-3 h-3 fill-current" /> Latest Release
             </div>
-            <h2 className="text-4xl font-black text-gray-900 mb-4">What's New in <span className="text-[#22c55e]">Version 3.0.0</span></h2>
-            <p className="text-gray-500 max-w-2xl mx-auto">We've packed this release with powerful new features, improvements, and fixes to supercharge your WhatsApp marketing workflow.</p>
+            <h2 className="text-4xl font-black text-gray-900 mb-4">What's New in <span className="text-[#22c55e]">Version 5.0.0</span></h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">Leadwave v5.0.0 is here! We've packed this release with powerful new features, critical fixes, and major performance enhancements.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Enhanced */}
+            {/* Enhancements */}
             <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 bg-[#22c55e]/10 rounded-xl flex items-center justify-center">
                   <Zap className="text-[#22c55e] w-5 h-5" />
                 </div>
-                <h3 className="text-xl font-bold">Enhanced</h3>
+                <h3 className="text-xl font-bold">Enhancements</h3>
               </div>
               <ul className="space-y-4">
                 {[
-                  "Revamped Dashboard UI for a smoother experience",
-                  "Support Button with official company information",
-                  "Removed unnecessary device socket reconnection reloads",
-                  "Device recognition enabled across all modules",
-                  "Label Export in Group Grabber (Experimental)",
-                  "Improved Number Filtering accuracy"
+                  "Multi-device selection for Auto Reply & Chatbot",
+                  "Active session filter in Bulk Messaging",
+                  "Improved chatbot flow node execution",
+                  "Typing status indicator before messages",
+                  "100% Complete language translation support",
+                  "Enhanced Live Chat with improved name display",
+                  "License removal option for admins",
+                  "General UI refinements for better UX"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
                     <CheckCircle2 className="w-4 h-4 text-[#22c55e] shrink-0 mt-0.5" /> {item}
@@ -372,43 +374,47 @@ const Home = () => {
               </ul>
             </div>
 
-            {/* Fixed */}
+            {/* Fixes */}
             <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 bg-[#f59e0b]/10 rounded-xl flex items-center justify-center">
                   <AlertCircle className="text-[#f59e0b] w-5 h-5" />
                 </div>
-                <h3 className="text-xl font-bold">Fixed</h3>
+                <h3 className="text-xl font-bold">Fixes</h3>
               </div>
               <ul className="space-y-4">
                 {[
-                  "Fixed Contact Group Name Editing issue",
-                  "Resolved Campaign Pause issue"
+                  "Resolved Bulk Message reporting issues",
+                  "Fixed Webhook issues in REST API",
+                  "Addressed Bulk Message pause functionality",
+                  "Fixed active session loading in Bulk Messaging",
+                  "Resolved document & audio template sending",
+                  "Fixed Device Creation Failed errors",
+                  "Database malfunction recovery fixed"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
                     <CheckCircle2 className="w-4 h-4 text-[#f59e0b] shrink-0 mt-0.5" /> {item}
                   </li>
                 ))}
-                <div className="mt-8 p-4 bg-gray-50 rounded-2xl flex items-center gap-2 text-xs font-bold text-gray-400">
-                  <CheckCircle2 className="w-4 h-4 text-[#22c55e]" /> All critical issues resolved
-                </div>
               </ul>
             </div>
 
-            {/* Added */}
+            {/* New Features */}
             <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 bg-[#6366f1]/10 rounded-xl flex items-center justify-center">
                   <Plus className="text-[#6366f1] w-5 h-5" />
                 </div>
-                <h3 className="text-xl font-bold">Added</h3>
+                <h3 className="text-xl font-bold">New Features</h3>
               </div>
               <ul className="space-y-4">
                 {[
-                  "Live Chat Module with basic CRM features",
-                  "Cloud-Based Licensing System for enhanced security",
-                  "Device restrictions during license generation",
-                  "Option to disable licenses when required"
+                  "Device pairing via pairing code (No QR needed)",
+                  "Sample template creation module",
+                  "Integrated Asocks proxy provider",
+                  "Launched Incoming Message module",
+                  "Multi-device Auto Reply selection",
+                  "Advanced Chatbot Flow node execution"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
                     <Plus className="w-4 h-4 text-[#6366f1] shrink-0 mt-0.5" /> {item}
@@ -434,26 +440,26 @@ const Home = () => {
           <div className="space-y-24">
             {[
               {
-                title: "Multi-Device Support",
-                desc: "Connect and manage multiple WhatsApp accounts from a single desktop application with seamless synchronization.",
+                title: "Device Pairing via Code",
+                desc: "New in v5.0.0: Connect your WhatsApp accounts using a simple pairing code. No need to scan QR codes, making setup faster and more flexible.",
                 icon: Smartphone,
                 color: "bg-[#22c55e]"
               },
               {
-                title: "Bulk Messaging",
-                desc: "Send personalized messages to multiple contacts simultaneously with smart scheduling and delivery optimization.",
+                title: "Incoming Message Module",
+                desc: "Manage and respond to all incoming messages directly within Leadwave. Stay on top of customer inquiries with a unified inbox experience.",
                 icon: MessageSquare,
                 color: "bg-[#6366f1]"
               },
               {
-                title: "Chatbot",
-                desc: "Intelligent automated responses powered by advanced AI to handle customer inquiries 24/7 with human-like interactions.",
+                title: "AI Chatbot Flow",
+                desc: "Improved node execution for better reliability. Create complex automated conversations that handle customer queries 24/7 with human-like precision.",
                 icon: Zap,
                 color: "bg-[#f59e0b]"
               },
               {
-                title: "Message Templates",
-                desc: "Create and manage reusable message templates for consistent communication.",
+                title: "Multi-Device Auto Reply",
+                desc: "Select multiple devices for your auto-reply and chatbot flows simultaneously, allowing for massive scale in your automated responses.",
                 icon: Globe,
                 color: "bg-[#22c55e]"
               }
