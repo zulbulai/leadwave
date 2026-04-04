@@ -1090,18 +1090,73 @@ export default function App() {
         </Routes>
         <Footer />
         
-        {/* WhatsApp Floating Button */}
-        <a 
-          href="https://wa.me/916387617678?text=Hi, I need information about Leadwave" 
-          className="fixed bottom-8 right-8 w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center shadow-2xl shadow-green-500/40 z-50 hover:scale-110 transition-transform animate-bounce"
-          style={{ animationDuration: '3s' }}
-        >
-          <MessageSquare className="w-8 h-8" />
-        </a>
+        <WhatsAppWidget />
       </div>
     </Router>
   );
 }
+
+const WhatsAppWidget = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="fixed bottom-8 right-8 z-50 flex flex-col items-end">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            className="mb-4 w-80 bg-white rounded-[32px] shadow-2xl border border-gray-100 overflow-hidden"
+          >
+            <div className="bg-[#22c55e] p-6 text-white">
+              <div className="flex items-center gap-4">
+                <div className="relative">
+                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                    <MessageSquare className="w-6 h-6" />
+                  </div>
+                  <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-[#22c55e] rounded-full"></div>
+                </div>
+                <div>
+                  <h4 className="font-black">Leadwave Support</h4>
+                  <p className="text-xs text-white/80">Typically replies in minutes</p>
+                </div>
+              </div>
+            </div>
+            <div className="p-6 bg-gray-50">
+              <div className="bg-white p-4 rounded-2xl shadow-sm mb-6 text-sm text-gray-600 leading-relaxed relative">
+                <div className="absolute -left-2 top-4 w-4 h-4 bg-white rotate-45"></div>
+                Hi there! 👋 How can we help you today with Leadwave automation?
+              </div>
+              <a
+                href="https://wa.me/916387617678?text=Hi, I need information about Leadwave"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-[#22c55e] text-white py-4 rounded-xl font-black flex items-center justify-center gap-2 hover:bg-[#16a34a] transition-colors shadow-lg shadow-green-100"
+              >
+                Start Chat on WhatsApp
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={`w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 ${
+          isOpen ? 'bg-gray-900 rotate-90' : 'bg-[#22c55e] hover:scale-110 animate-bounce'
+        }`}
+        style={!isOpen ? { animationDuration: '3s' } : {}}
+      >
+        {isOpen ? (
+          <Plus className="w-8 h-8 text-white rotate-45" />
+        ) : (
+          <MessageSquare className="w-8 h-8 text-white" />
+        )}
+      </button>
+    </div>
+  );
+};
 
 const HashScrollHandler = () => {
   const location = useLocation();
