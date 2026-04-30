@@ -1,4 +1,3 @@
-
 <div align="center">
 
 <!-- ANIMATED HEADER -->
@@ -11,8 +10,8 @@
 
 <!-- BADGES ROW 1 -->
 [![Live Website](https://img.shields.io/badge/🌐_Live_Website-getleadwave.in-25D366?style=for-the-badge)](https://getleadwave.in)
-[![WhatsApp](https://img.shields.io/badge/💬_Support-+91_72619_02348-128C7E?style=for-the-badge)](https://wa.me/917261902348)
-[![License Portal](https://img.shields.io/badge/🔐_License-license.getleadwave.in-0a84ff?style=for-the-badge)](https://license.getleadwave.in)
+[![WhatsApp](https://img.shields.io/badge/💬_Support-+91_72619_02348-128C7E?style=for-the-badge)](https://wa.me/916387617678)
+[![License Portal](https://img.shields.io/badge/🔐_License-916387617678-0a84ff?style=for-the-badge)](916387617678)
 
 <br/>
 
@@ -191,7 +190,7 @@ Step 1  →  Visit https://getleadwave.in and pick your plan
 Step 2  →  Click the WhatsApp Buy button on the plan card
 Step 3  →  Download & install Lead Wave desktop app
 Step 4  →  App generates your unique License Code
-Step 5  →  Send that code on WhatsApp: +91 72619 02348
+Step 5  →  Send that code on WhatsApp: +916387617678
 Step 6  →  Receive your Activation Key instantly
 Step 7  →  Enter key in app → All features unlocked 🎉
 ```
@@ -634,7 +633,7 @@ The website includes these trust-building elements important for Indian SaaS buy
 |---------|---------|------|
 | 💬 WhatsApp Support | +91 72619 02348 | [Chat Now](https://wa.me/917261902348) |
 | 🌐 Official Website | getleadwave.in | [Visit](https://getleadwave.in) |
-| 🔐 License Portal | license.getleadwave.in | [Open Portal](https://license.getleadwave.in) |
+| 🔐 License Portal | 916387617678 | [Open Portal](916387617678) |
 
 </div>
 
@@ -686,10 +685,10 @@ The website includes these trust-building elements important for Indian SaaS buy
 **🌊 Lead Wave — Automate WhatsApp. Scale Business.**
 
 [![Website](https://img.shields.io/badge/🌐_getleadwave.in-25D366?style=for-the-badge)](https://getleadwave.in)
-[![WhatsApp](https://img.shields.io/badge/💬_+91_72619_02348-128C7E?style=for-the-badge)](https://wa.me/917261902348)
+[![WhatsApp](https://img.shields.io/badge/💬_+916387617678-128C7E?style=for-the-badge)](https://wa.me/917261902348)
 
 ⭐ **If this project helped you, please give it a Star!** ⭐
 
-`Made with ❤️ in India | © 2025 Lead Wave`
+`Made with ❤️ in India | © 2026 Lead Wave`
 
 </div>
